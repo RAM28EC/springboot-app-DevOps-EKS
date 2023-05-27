@@ -22,6 +22,17 @@ pipeline {
                 }
             }
         }
+        stage('push image') {
+            steps {
+                script{
+                    sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 204813321067.dkr.ecr.ap-south-1.amazonaws.com"
+                    sh "docker push 204813321067.dkr.ecr.ap-south-1.amazonaws.com/dockerimage"
+
+                }
+            }
+        }
+ 
+        
 
     }
 }
