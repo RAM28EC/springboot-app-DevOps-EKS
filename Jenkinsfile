@@ -10,6 +10,11 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/RAM28EC/springboot-app-DevOps-EKS.git']])
             }
         }
+        stage ("build Jar") {
+            steps {
+                sh "mvn clean install"
+            }
+        }
         stage('Build Image') {
             steps {
                 script{
